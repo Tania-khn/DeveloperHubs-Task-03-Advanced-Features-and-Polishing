@@ -204,48 +204,6 @@ If you change the socket port, also update `NEXT_PUBLIC_SOCKET_URL` in `.env.loc
 
 ---
 
-## Uploading to GitHub
-
-1. Create a new repo on GitHub (e.g. `pulse-social-feed`) — don't initialize with README/license/gitignore.
-
-2. From the project root:
-```bash
-git init
-git add .
-git commit -m "Initial commit: Pulse realtime social feed"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/pulse-social-feed.git
-git push -u origin main
-```
-
-The included `.gitignore` excludes `node_modules/`, `.next/`, `.env.local`, and other regeneratable files.
-
----
-
-## Troubleshooting
-
-**Q: The page loads but no posts appear / "Realtime connection lost" banner shows**
-
-A: The Socket.io server isn't running. Make sure you ran `npm run dev:all` (or `npm run dev:server` in a separate terminal). Check the magenta `[socket]` logs — you should see `[feed-service] realtime server running on port 3003`.
-
-**Q: `npm run dev:all` says `concurrently: command not found`**
-
-A: Run `npm install` first to install dev dependencies, then try again.
-
-**Q: Browser asks for notification permission but nothing happens after I click "Allow"**
-
-A: Some browsers require HTTPS for notifications to actually fire. On `localhost` it should work — open DevTools Console to check for errors. The in-app toasts (top-center) will still fire regardless.
-
-**Q: TypeScript / lint errors in VSCode**
-
-A: Open VSCode's terminal and run `npm run lint` to see them. Most warnings are auto-fixable with `npm run lint -- --fix`.
-
-**Q: Port 3000 or 3003 is already in use**
-
-A: Either kill the conflicting process (`lsof -i :3000` on Mac/Linux) or change the port in `package.json` (for 3000) or `mini-services/feed-service/index.js` (for 3003). If you change 3003, also update `NEXT_PUBLIC_SOCKET_URL` in `.env.local`.
-
----
-
 ## What's next?
 
 Ideas to extend the demo:
